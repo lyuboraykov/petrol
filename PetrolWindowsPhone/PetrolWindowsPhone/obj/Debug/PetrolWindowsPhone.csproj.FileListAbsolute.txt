@@ -30,3 +30,8 @@ S:\Personal Projects\petrol\PetrolWindowsPhone\PetrolWindowsPhone\obj\Debug\qual
 S:\Personal Projects\petrol\PetrolWindowsPhone\PetrolWindowsPhone\obj\Debug\qualifiers.txt.intermediate
 S:\Personal Projects\petrol\PetrolWindowsPhone\PetrolWindowsPhone\obj\Debug\MultipleQualifiersPerDimensionFound.txt
 S:\Personal Projects\petrol\PetrolWindowsPhone\PetrolWindowsPhone\obj\Debug\ProjectArchitectures.txt
+S:\Personal Projects\petrol\PetrolWindowsPhone\PetrolWindowsPhone\bin\Debug\StartPage.xbf
+S:\Personal Projects\petrol\PetrolWindowsPhone\PetrolWindowsPhone\obj\Debug\StartPage.g.i.cs
+S:\Personal Projects\petrol\PetrolWindowsPhone\PetrolWindowsPhone\obj\Debug\StartPage.g.cs
+S:\Personal Projects\petrol\PetrolWindowsPhone\PetrolWindowsPhone\obj\Debug\StartPage.xaml
+S:\Personal Projects\petrol\PetrolWindowsPhone\PetrolWindowsPhone\obj\Debug\StartPage.xbf

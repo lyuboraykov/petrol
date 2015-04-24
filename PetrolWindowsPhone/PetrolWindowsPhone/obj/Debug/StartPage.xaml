@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="PetrolWindowsPhone.StartPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PetrolWindowsPhone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="Petrol" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="New Session" Margin="0,-6.5,0,26.5" Style="{ThemeResource ApplicationHeaderPageTitleStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            <Line X1="3"  X2="500" HorizontalAlignment="Stretch" Fill="White" Stroke="Orange" StrokeThickness="8"></Line>
+        </StackPanel>
+        <Grid>
+
+        </Grid>
+    </Grid>
+</Page>
+
