@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetrolWindowsPhone.Common;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,13 +23,25 @@ namespace PetrolWindowsPhone
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private NavigationHelper navigationHelper;
+
         public MainPage()
         {
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
+            this.navigationHelper = new NavigationHelper(this);
+            this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
+            this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
         }
 
+        private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
+        {
+        }
+
+        private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
+        {
+        }
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
         /// </summary>
