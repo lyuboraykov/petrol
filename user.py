@@ -1,11 +1,10 @@
 from app import db
 
-class GasStation(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    token = db.Column(db.String(80))
+class User(db.Model):
+    id = db.Column(db.String(255), primary_key=True)
 
-    def __init__(self, token):
-        self.token = token
+    def __init__(self, id):
+        self.id = id
 
     def __repr__(self):
-        return '<token %r>' % self.token
+        return '<Id {}>'.format(self.id)
