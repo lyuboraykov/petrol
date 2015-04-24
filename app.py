@@ -4,23 +4,15 @@ from flask import Flask
 from flask import render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 
+import gas_station
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
-
-class GasStation(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
-    location = db.Column(db.String(120), unique=True)
-
-    def __init__(self, name, location):
-        self.name = name
-        self.location = location
-
-    def __repr__(self):
-        return '<Name %r>' % self.name
-
+@app.before_first_request
+def initialize_database():
+    db.create_all()
 
 @app.route('/')
 def home():
