@@ -5,6 +5,8 @@ from flask import render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 
 import gas_station
+import user
+import user_gas_station
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
