@@ -1,11 +1,11 @@
-import app
+from app import db
 
-class GasStation(app.db.Model):
-    city = app.db.Column(app.db.String(80), primary_key=True)
-    address = app.db.Column(app.db.String(80), primary_key=True)
-    name = app.db.Column(app.db.String(80))
-    kilometers = app.db.Column(app.db.Float)
-    liters = app.db.Column(app.db.Float)
+class GasStation(db.Model):
+    city = db.Column(db.String(80), primary_key=True)
+    address = db.Column(db.String(80), primary_key=True)
+    name = db.Column(db.String(80))
+    kilometers = db.Column(db.Float)
+    liters = db.Column(db.Float)
 
     def __init__(self, city, address, name):
         self.city = city
