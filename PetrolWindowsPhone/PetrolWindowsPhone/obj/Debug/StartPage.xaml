@@ -22,8 +22,8 @@
 
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
             <TextBlock Text="Petrol" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="New Session" Margin="0,-6.5,0,26.5" Style="{ThemeResource ApplicationHeaderPageTitleStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
-            <Line X1="3"  X2="500" HorizontalAlignment="Stretch" Fill="White" Stroke="Orange" StrokeThickness="8"></Line>
+            <TextBlock Text="New Session" Style="{ThemeResource ApplicationHeaderPageTitleStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            <Line Style="{ThemeResource ApplicationHeaderLineStyle}"></Line>
         </StackPanel>
         <Grid>
 

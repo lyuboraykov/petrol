@@ -5,14 +5,24 @@
     xmlns:local="using:PetrolWindowsPhone">
     <Application.Resources>
         <Style TargetType="TextBlock" x:Key="ApplicationHeaderPageTitleStyle">
-        <Setter Property="FontSize" Value="50.5"/>
-        <Setter Property="FontWeight" Value="SemiLight"/>
-        <Setter Property="LineHeight" Value="57.5"/>
-        <Setter Property="TextWrapping" Value="NoWrap" />
-        <Setter Property="Foreground" Value="Orange"/>
+            <Setter Property="FontSize" Value="50.5"/>
+            <Setter Property="FontWeight" Value="SemiLight"/>
+            <Setter Property="LineHeight" Value="57.5"/>
+            <Setter Property="TextWrapping" Value="NoWrap" />
+            <Setter Property="Foreground" Value="Orange"/>
+            <Setter Property="Margin" Value="0,-6.5,0,26.5"/>
         </Style>
-        
-        
+
+        <Style TargetType="Line" x:Key="ApplicationHeaderLineStyle">
+            <Setter Property= "HorizontalAlignment" Value = "Stretch"/>
+            <Setter Property="Fill" Value="Orange"/>
+            <Setter Property="StrokeThickness" Value="8"/>
+            <Setter Property="Stroke" Value="Orange"/>
+            <Setter Property="X1" Value="3"/>
+            <Setter Property="X2" Value="500"/>
+        </Style>
+
+
     </Application.Resources>
 </Application>
 

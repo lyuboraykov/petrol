@@ -19,6 +19,9 @@
     <AppxPackagedFile Include="S:\Personal Projects\petrol\PetrolWindowsPhone\PetrolWindowsPhone\bin\Debug\PetrolWindowsPhone.exe">
       <PackagePath>PetrolWindowsPhone.exe</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="S:\Personal Projects\petrol\PetrolWindowsPhone\PetrolWindowsPhone\Assets\facebook-icon.png">
+      <PackagePath>Assets\facebook-icon.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="S:\Personal Projects\petrol\PetrolWindowsPhone\PetrolWindowsPhone\Assets\Logo.scale-240.png">
       <PackagePath>Assets\Logo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
