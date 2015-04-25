@@ -23,24 +23,26 @@ $('.navbar-collapse ul li a').click(function() {
     $('.navbar-toggle:visible').click();
 });
 
-$.getJSON("js/data.json", function(data) {
-    var items = '';
+$.getJSON("/static/js/data.json", function(data) {
+    var items = '',
+        index = 1;
     data.forEach(function(listItem) {
 
         items += "<tr>" +
             "<td>" +
-            "<span" + (listItem.rank <= 3 ? " class='rank'>" : ">") + listItem.rank + "</span>" +
+            "<span" + (index <= 3 ? " class='rank'>" : ">") + index + "</span>" +
             "</td>" +
             "<td>" +
             "<span class='station-name'>" + listItem.name + "</span>" +
             "<span class='address'>" + listItem.address + "</span>" +
             "</td>" +
-            "<td>" + "consumption" + "</td>" +
-            "<td>" + "distance" + "</td>" +
+            "<td>" + listItem.liters + "l." + "</td>" +
+            "<td>" + listItem.kilometers + "km." + "</td>" +
             "<td>" +
-            "<span class='avg'>" + listItem.avg + "</span>" +
+            "<span class='avg'>" + Math.round((listItem.liters / listItem.kilometers) * 1000) / 10 + "</span>" +
             "</td>" +
             "</tr>";
+        index++;
     });
 
     $(".rank-list tbody").append(items);

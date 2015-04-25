@@ -109,7 +109,7 @@ a:focus {
 }
 
 .navbar-custom .nav li.active a {
-    background-color: rgba(255, 255, 255, .3);
+    background-color: rgba(233, 155, 16, .3);
 }
 
 .navbar-custom .nav li.active a:hover {
@@ -123,20 +123,14 @@ a:focus {
     table-layout: fixed;
 }
 
-.rank-list th:first-child {
-    border-top-left-radius: 10px;
-}
-
-.rank-list th:last-child {
-    border-top-right-radius: 10px;
-}
-
 .rank-list th {
     text-align: center;
+    height: 53px;
+    font-size: 20px;
+    border-bottom: 2px solid rgb(233, 155, 16);
 }
 
 .rank-list tbody tr {
-    border: 1px solid grey;
     background-color: white;
 }
 
@@ -146,8 +140,6 @@ a:focus {
 
 .rank-list thead tr {
     background-color: white;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
 }
 
 .rank-list td span,
@@ -196,6 +188,12 @@ td {
     line-height: 50px;
     margin-right: 5px;
     flex-basis: 50px;
+}
+
+#logo {
+    width: 90px;
+    margin-bottom: ;
+    margin-top: -50px;
 }
 
 @media(min-width:768px) {
@@ -275,7 +273,7 @@ td {
 .btn-circle:focus {
     outline: 0;
     color: #fff;
-    background: rgba(255, 255, 255, .1);
+    background: rgba(233, 155, 16, .3);
 }
 
 .btn-circle i.animated {
@@ -366,17 +364,16 @@ td {
 }
 
 .btn-default {
-    border: 1px solid #42dca3;
-    color: #42dca3;
+    border: 1px solid rgb(233, 155, 16);
+    color: rgb(233, 155, 16);
     background-color: transparent;
 }
 
 .btn-default:hover,
 .btn-default:focus {
-    border: 1px solid #42dca3;
-    outline: 0;
+    border: 1px solid rgb(233, 155, 16) outline: 0;
     color: #000;
-    background-color: #42dca3;
+    background-color: rgb(233, 155, 16);
 }
 
 ul.banner-social-buttons {
