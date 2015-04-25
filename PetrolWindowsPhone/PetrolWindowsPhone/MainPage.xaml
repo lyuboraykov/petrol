@@ -14,27 +14,62 @@
 				<EntranceThemeTransition/>
 			</TransitionCollection>
 		</Grid.ChildrenTransitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
 
 		<StackPanel Grid.Row="0" Margin="19,0,0,0">
 			<TextBlock Text="Petrol" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,0,12,0" HorizontalAlignment="Right"/>
-			<TextBlock Text="New Session" Style="{ThemeResource ApplicationHeaderPageTitleStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            <Image Source="Assets/logo-5.png" Width="150" HorizontalAlignment="Left"></Image>
+            <!--<TextBlock Text="Sign In" Style="{ThemeResource ApplicationHeaderPageTitleStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>-->
 			<Line Style="{ThemeResource ApplicationHeaderLineStyle}"></Line>
 		</StackPanel>
+        <StackPanel Grid.Row="2">
 
-		<Button Height="90"
-				Width="370"
-				Click="FacebookLoginButton_Click"
-				HorizontalAlignment="Center">
-			<Button.Background>
-				<ImageBrush
-					Stretch="UniformToFill"
-				   ImageSource="Assets/facebook-login.png" />
-			</Button.Background>
-			<Button.BorderBrush>
-				transparent
-			</Button.BorderBrush>
-		</Button>
+            <TextBox PlaceholderText="E-mail"
+        		Background="Black"
+        		BorderBrush="Orange"
+        		Width="270"/>
+            <TextBox PlaceholderText="Password"
+        		Background="Black"
+        		BorderBrush="Orange"
+        		Width="270"/>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Button Content="Sign In"
+            	HorizontalAlignment="Center"
+            	BorderBrush="Orange"
+                Width="125"/>
+                <Button Content="Sign Up"
+                        Margin="20,0,0,0"
+            	HorizontalAlignment="Center"
+            	BorderBrush="Orange"
+                Width="125"/>
+            </StackPanel>
+            
+
+            <Button Height="74"
+                    Content="Sign in with Facebook"
+                    Padding="15,0,0,0"
+                    
+        		Width="275"
+        		Click="FacebookLoginButton_Click"
+        		HorizontalAlignment="Center">
+                <Button.Background>
+                    <ImageBrush
+        				Stretch="Uniform"
+        				ImageSource="Assets/fb-login.png"/>
+                </Button.Background>
+                <Button.BorderBrush>
+                    <Brush>transparent</Brush>
+                </Button.BorderBrush>
+            </Button>
+        </StackPanel>
+        
 	</Grid>
+    
 	<Page.BottomAppBar>
 		<CommandBar>
 			<AppBarButton x:Uid="StatsAppBarButton" x:Name="StatsAppBarButton" Label="stats" Icon="AllApps" Click="AddAppBarButton_Click" />
