@@ -60,11 +60,11 @@ def get_stations():
 @app.route('/refuel', methods=["POST"])
 def refuel():
     # logic
-    user_id = request.args.get('user_id')
-    city = request.args.get('city')
-    address = request.args.get('address')
-    liters = request.args.get('liters')
-    kilometers = request.args.get('kilometers')
+    user_id = request.form.get('user_id')
+    city = request.form.get('city')
+    address = request.form.get('address')
+    liters = request.form.get('liters')
+    kilometers = request.form.get('kilometers')
     user_gas_station = UserGasStation.query \
     .filter(UserGasStation.gas_station_city == city, UserGasStation.gas_station_address == address, \
         UserGasStation.user_id == user_id).first()
@@ -76,10 +76,11 @@ def refuel():
 
 @app.route('/user', methods=['POST'])
 def create_user():
-    user_id = request.args.get('id')
+    user_id = request.form.get('id')
     user = User(user_id)
     db.session.add(user)
     db.session.commit()
+    return user, 201
 
 @app.route('/')
 def home():
