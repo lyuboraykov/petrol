@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, Blueprint
+from flask import Flask, request, jsonify, Blueprint, send_from_directory
 
 routes = Blueprint('routes', __name__, static_url_path='/static')
 
@@ -24,4 +24,4 @@ def refuel():
 
 @routes.route('/')
 def home():
-    return routes.send_static_file('index.html')
+    return send_from_directory('static', 'index.html')
