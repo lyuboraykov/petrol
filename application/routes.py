@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, send_from_directory
-from application import app, models
+from application import app, db, models
 
 @app.route('/station/<city>/<address>', methods=["GET"])
 def get_station(city, address):
@@ -9,10 +9,13 @@ def get_station(city, address):
 
     return jsonify(station), 200
 
-@app.route('/station', methods=["POST"])
-def create_station():
-    # logic
-    return jsonify({'answer': 42})
+@app.route('/station/<city>/<address>/<name>', methods=["POST"])
+def create_station(city, address, name):
+    station = GasStation(city, address, name)
+    db.session.add(station)
+    db.session.commit()
+
+    return jsonify(me), 201
 
 @app.route('/stations', methods=["GET"])
 def get_stations():
