@@ -9,10 +9,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.debug = True
 db = SQLAlchemy(app)
 
-from user import User
-from gas_station import GasStation
-from user_gas_station import UserGasStation
-
 @app.before_first_request
 def initialize_database():
     db.create_all()
