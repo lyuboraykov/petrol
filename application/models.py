@@ -35,7 +35,7 @@ class GasStation(db.Model, StationBase):
     kilometers = db.Column(db.Float)
     liters = db.Column(db.Float)
     average_consumption = db.Column(db.Float)
-    users = db.relationship('User', secondary = "user_gas_station")
+    users = db.relationship('User', secondary="user_gas_station")
 
     def __init__(self, city, address, name):
         self.city = city
@@ -51,7 +51,7 @@ class GasStation(db.Model, StationBase):
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.String(255), primary_key=True)
-    gas_stations = db.relationship('GasStation', secondary = "user_gas_station")
+    gas_stations = db.relationship('GasStation', secondary="user_gas_station")
 
     def __init__(self, id):
         self.id = id
