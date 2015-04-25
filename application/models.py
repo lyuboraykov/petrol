@@ -1,20 +1,5 @@
-import os
-
-from flask import Flask
-from flask import render_template, request
-from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKeyConstraint
-from routes import routes
-
-app = Flask(__name__, static_url_path='/static')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-app.register_blueprint(routes)
-app.debug = True
-db = SQLAlchemy(app)
-
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+from application import db
 
 class UserGasStation(db.Model):
     user_id = db.Column(db.String(255), db.ForeignKey("users.id"), primary_key=True)
