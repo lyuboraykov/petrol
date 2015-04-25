@@ -79,7 +79,7 @@ def refuel():
     #             UserGasStation.gas_station_address == address,
     #             UserGasStation.user_id == user_id).first()
 
-    user_gas_station.refuel(liters, kilometers)
+    #user_gas_station.refuel(liters, kilometers)
     gas_station.refuel(liters, kilometers)
     db.session.commit()
 
