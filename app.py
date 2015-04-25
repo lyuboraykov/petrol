@@ -1,11 +1,11 @@
 import os
 
 from flask import Flask
-from flask import render_template
+from flask import render_template, request
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKeyConstraint
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='static')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.debug = True
 db = SQLAlchemy(app)
@@ -16,7 +16,7 @@ def initialize_database():
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return app.send_static_file('index.html')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
