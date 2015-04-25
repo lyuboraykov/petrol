@@ -1,6 +1,8 @@
 from sqlalchemy import ForeignKeyConstraint
 from sqlalchemy.orm import relationship, backref
 
+from sqlalchemy.ext.associationproxy import association_proxy
+
 from application import db
 
 class StationBase(object):
@@ -10,13 +12,14 @@ class StationBase(object):
         self.average_consumption = (self.liters / self.kilometers) * 100
 
 class UserGasStation(db.Model, StationBase):
+    __tablename__ = 'user_gas_station'
     user_id = db.Column(db.String(255), db.ForeignKey("users.id"), primary_key=True)
     gas_station_city = db.Column(db.String(80), primary_key=True)
     gas_station_address = db.Column(db.String(80), primary_key=True)
     kilometers = db.Column(db.Float)
-    liters = db.Column(db.Float)
-    user = db.relationship('User', backref=backref("user_assoc"))
-    gas_station = db.relationship('GasStation', backref=backref("gas_station_assoc"))
+    liters = db.Column(db.Float)    
+    user = db.relationship('User', backref=backref("gas-stations", cascade="all, delete-orphan"))
+    gas_station = db.relationship('GasStation')
     __table_args__ = (ForeignKeyConstraint([gas_station_city, gas_station_address], ["gas_stations.city", "gas_stations.address"]), {})
 
     def __init__(self, user_id, gas_station_city, gas_station_address):
@@ -35,7 +38,6 @@ class GasStation(db.Model, StationBase):
     kilometers = db.Column(db.Float)
     liters = db.Column(db.Float)
     average_consumption = db.Column(db.Float)
-    users = db.relationship('User', secondary="user_gas_station")
 
     def __init__(self, city, address, name):
         self.city = city
@@ -51,7 +53,7 @@ class GasStation(db.Model, StationBase):
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.String(255), primary_key=True)
-    gas_stations = db.relationship('GasStation', secondary="user_gas_station")
+    gas_stations = association_proxy('gas-stations', "user_gas_station")
 
     def __init__(self, id):
         self.id = id
