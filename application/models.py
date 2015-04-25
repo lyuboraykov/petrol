@@ -14,7 +14,7 @@ class StationBase(object):
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.String(255), primary_key=True)
-    gas_stations = db.association_proxy("user_gas_stations", 'gas_stations')
+    gas_stations = association_proxy("user_gas_stations", 'gas_stations')
 
     def __init__(self, id):
         self.id = id
