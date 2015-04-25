@@ -17,16 +17,19 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="Petrol" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <!-- <TextBlock Text="Petrol" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,0,12,0" HorizontalAlignment="Right"/> -->
             <TextBlock Text="New Session" Style="{ThemeResource ApplicationHeaderPageTitleStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
             <Line Style="{ThemeResource ApplicationHeaderLineStyle}"></Line>
         </StackPanel>
-        <Grid>
-
+        <Grid Grid.Row="2">
+            <StackPanel HorizontalAlignment="Center">
+                <Button></Button>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>
