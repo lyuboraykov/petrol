@@ -1,5 +1,4 @@
-import jsonpickle
-from flask import Flask, request, send_from_directory
+from flask import Flask, request, jsonify send_from_directory
 from application import app, db
 from application.models import User, GasStation, UserGasStation
 
@@ -9,7 +8,7 @@ def get_station(city, address):
     if station is None:
         return None, 404
 
-    return jsonpickle.encode(station, unpicklable=False), 200
+    return jsonify(station.__dict__), 200
 
 @app.route('/station/<city>/<address>/<name>', methods=["POST"])
 def create_station(city, address, name):
@@ -17,7 +16,7 @@ def create_station(city, address, name):
     db.session.add(station)
     db.session.commit()
 
-    return jsonpickle.encode(station, unpicklable=False), 201
+    return jsonify(station.__dict__), 201
 
 @app.route('/stations', methods=["GET"])
 def get_stations():
