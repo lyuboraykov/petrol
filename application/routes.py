@@ -1,10 +1,13 @@
 from flask import Flask, request, jsonify, send_from_directory
-from application import app
+from application import app, models
 
-@app.route('/station', methods=["GET"])
-def get_station():
-    # logic
-    return jsonify({'answer': 42})
+@app.route('/station/<city>/<address>', methods=["GET"])
+def get_station(city, address):
+    station = GasStation.filter(GasStation.city == city, GasStation.address == address).first()
+    if station is None:
+        return None, 404
+
+    return jsonify(station), 200
 
 @app.route('/station', methods=["POST"])
 def create_station():
