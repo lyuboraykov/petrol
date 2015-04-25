@@ -13,8 +13,8 @@ class UserGasStation(db.Model, StationBase):
     gas_station_address = db.Column(db.String(80), primary_key=True)
     kilometers = db.Column(db.Float)
     liters = db.Column(db.Float)
-    user = db.relationship(User, backref=backref("user_assoc"))
-    gas_station = db.relationship(GasStation, backref=backref("gas_station_assoc"))
+    user = db.relationship('users', backref=backref("user_assoc"))
+    gas_station = db.relationship('gas_stations', backref=backref("gas_station_assoc"))
     __table_args__ = (ForeignKeyConstraint([gas_station_city, gas_station_address], ["gas_stations.city", "gas_stations.address"]), {})
 
     def __init__(self, user_id, gas_station_city, gas_station_address):
