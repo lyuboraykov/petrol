@@ -3,7 +3,7 @@ from app import db
 class UserGasStation(db.Model):
     user_id = db.Column(db.String(255), ForeignKey("users.id"), primary_key=True)
     gas_station_city = db.Column(db.String(80), primary_key=True)
-    gas_station_ad dress = db.Column(db.String(80), primary_key=True)
+    gas_station_address = db.Column(db.String(80), primary_key=True)
     kilometers = db.Column(db.Float)
     liters = db.Column(db.Float)
     ForeignKeyConstraints([gas_station_city, gas_station_address], ["GasStation.city", "GasStation.address"])
