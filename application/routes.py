@@ -74,6 +74,12 @@ def refuel():
     db.session.commit()
     return json.dumps({'answer': 42})
 
+@app.route('/user', methods=['POST'])
+def create_user():
+    def user_id = request.args.get('id')
+    user = User(user_id)
+    db.session.add(user)
+    db.session.commit
 
 @app.route('/')
 def home():
