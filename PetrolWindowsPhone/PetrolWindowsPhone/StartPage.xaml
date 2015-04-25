@@ -49,7 +49,7 @@
 				Content="Start"
 				Width="200"
 				Height="100"
-				Click="StartSessionButton_Click"></Button>
+				Click="StartSession"></Button>
         
         <Grid Margin="20,250,0,-44.833" Name="sessionData" Visibility="Collapsed">
             <Grid.RowDefinitions>

@@ -1,5 +1,4 @@
-﻿using PetrolWindowsPhone.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,6 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Services.Maps;
+using Windows.Devices.Geolocation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -23,15 +24,28 @@ namespace PetrolWindowsPhone
     /// </summary>
     public sealed partial class StartPage : Page
     {
-		private NavigationHelper navigationHelper;
-
         public StartPage()
         {
-			this.InitializeComponent();
+            this.InitializeComponent();
+            this.GeoLocation();
+        }
 
-			this.navigationHelper = new NavigationHelper(this);
-			this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
-			this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+        private async void GeoLocation()
+        {
+            Geolocator geolocator = new Geolocator();
+            geolocator.DesiredAccuracyInMeters = 1;
+            Geoposition position = await geolocator.GetGeopositionAsync();
+            BasicGeoposition pos = new BasicGeoposition();
+            pos.Latitude = position.Coordinate.Point.Position.Latitude;
+            pos.Longitude = position.Coordinate.Point.Position.Longitude;
+            Geopoint pointToReverseGeocode = new Geopoint(pos);
+            
+            MapLocationFinderResult result = await MapLocationFinder.FindLocationsAtAsync(pointToReverseGeocode);
+
+            // here also it should be checked if there result isn't null and what to do in such a case
+            MapAddress address = result.Locations[0].Address;
+            string c = address.ToString();
+            int a = 6;
         }
 
         /// <summary>
@@ -48,14 +62,6 @@ namespace PetrolWindowsPhone
 
         }
 
-		private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
-		{
-		}
-
-		private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
-		{
-		}
-
         private void RestartSession(object sender, RoutedEventArgs e)
         {
             sessionData.Visibility = Visibility.Collapsed;
@@ -64,15 +70,12 @@ namespace PetrolWindowsPhone
             restartButton.IsEnabled = false;
         }
 
-        private async void StartSessionButton_Click(object sender, RoutedEventArgs e)
+        private void StartSession(object sender, RoutedEventArgs e)
         {
-			//buttons visibility
             sessionData.Visibility = Visibility.Visible;
             startButton.Visibility = Visibility.Collapsed;
             stopButton.IsEnabled = true;
             restartButton.IsEnabled = true;
-
-			//get location
         }
     }
 }
