@@ -6,7 +6,7 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from application import db
 
 class StationBase(object):
-    def refuel(liters, kilometers):
+    def refuel(self, liters, kilometers):
         self.liters += liters
         self.kilometers += kilometers
         self.average_consumption = (self.liters / self.kilometers) * 100
