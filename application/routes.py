@@ -4,6 +4,16 @@ from flask import request
 from application.models import User, GasStation, UserGasStation
 
 
+def station_to_dict(station):
+    return {
+        "name": station.name,
+        "address": station.address,
+        "city": station.city,
+        "liters": station.liters,
+        "kilometers": station.kilometers
+    }
+
+
 @app.route('/station/<city>/<address>', methods=["GET"])
 def get_station(city, address):
     station = GasStation.query \
