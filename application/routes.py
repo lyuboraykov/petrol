@@ -55,7 +55,10 @@ def get_stations():
     # logic and query params
     top_count = request.args.get('top', default=10)
     are_sorted = request.args.get('sorted', default=False)
-    stations = GasStation.query.order_by(GasStation.average_consumption).limit(top_count)
+    if are_sorted:
+        stations = GasStation.query.order_by(GasStation.average_consumption).limit(top_count)
+    else:
+        stations = GasStation.query.limit(top_count)
     if stations is None:
         return None, 404
     dict_list = []
@@ -78,6 +81,10 @@ def refuel():
     address = request.form.get('address')
     liters = request.form.get('liters')
     kilometers = request.form.get('kilometers')
+    user = User.query.filter(User.id == user_id)
+    gas_station = GasStation.query.filter(gas_station.address == address, gas_station.liters == liters)
+    if gas_station not in user.gas_stations:
+        user.gas_stations.append(gas_station)
     user_gas_station = UserGasStation.query \
     .filter(UserGasStation.gas_station_city == city, UserGasStation.gas_station_address == address, \
         UserGasStation.user_id == user_id).first()
@@ -85,7 +92,9 @@ def refuel():
     user_gas_station.refuel(liters, kilometers)
     gas_station.refuel(liters, kilometers)
     db.session.commit()
-    return json.dumps({'answer': 42})
+    return json.dumps({'gas_station_average': gas_station.average_consumption,
+                        'user_average': user_gas_station.average_consumption
+                      }), 200
 
 @app.route('/user', methods=['POST'])
 def create_user():
