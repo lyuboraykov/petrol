@@ -60,12 +60,22 @@ namespace PetrolWindowsPhone
 
 		private void FacebookLoginButton_Click(object sender, RoutedEventArgs e)
 		{
-
+			this.Frame.Navigate(typeof(StartPage));
 		}
 
 		private void AddAppBarButton_Click(object sender, RoutedEventArgs e)
 		{
 			this.Frame.Navigate(typeof(StatsPage));
+		}
+
+		private void RefuelButton_Click(object sender, RoutedEventArgs e)
+		{
+			this.Frame.Navigate(typeof(RefuelPage));
+		}
+
+		private void LogoutButton_Click(object sender, RoutedEventArgs e)
+		{
+
 		}
     }
 }
