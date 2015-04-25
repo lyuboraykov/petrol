@@ -2,7 +2,7 @@ import os
 
 from flask import Flask
 from flask import render_template
-from flask.ext.sqlalchemy import SQLAlchemy, ForeignKey, ForeignKeyConstraints
+from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
@@ -22,12 +22,12 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port)
 
 class UserGasStation(db.Model):
-    user_id = db.Column(db.String(255), ForeignKey("users.id"), primary_key=True)
+    user_id = db.Column(db.String(255), db.ForeignKey("users.id"), primary_key=True)
     gas_station_city = db.Column(db.String(80), primary_key=True)
     gas_station_address = db.Column(db.String(80), primary_key=True)
     kilometers = db.Column(db.Float)
     liters = db.Column(db.Float)
-    ForeignKeyConstraints([gas_station_city, gas_station_address], ["GasStation.city", "GasStation.address"])
+    db.ForeignKeyConstraints([gas_station_city, gas_station_address], ["GasStation.city", "GasStation.address"])
 
     def __init__(self, user_id, gas_station_city, gas_station_address):
         self.user_id = user_id
