@@ -22,14 +22,46 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <!-- <TextBlock Text="Petrol" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,0,12,0" HorizontalAlignment="Right"/> -->
-            <TextBlock Text="New Session" Style="{ThemeResource ApplicationHeaderPageTitleStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            <TextBlock Text="Petrol" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,0,12,0" HorizontalAlignment="Right"/>
+            <TextBlock Text="Session" Style="{ThemeResource ApplicationHeaderPageTitleStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="0" Source="Assets/logo-5.png" Width="130" HorizontalAlignment="Center"></Image>
+                <Button Name="stopButton" Grid.Row="0" IsEnabled="False" Grid.Column="2" Grid.RowSpan="2" Content ="Stop" HorizontalAlignment="Center" Width="150" Height="70" VerticalAlignment="Top" BorderBrush="Red"></Button>
+                <Button Name="restartButton" IsEnabled="False" Grid.Row="0" Grid.Column="2" Content="Restart" HorizontalAlignment="Center" Width="150" Height="70" VerticalAlignment="Bottom" BorderBrush="Orange" Click="RestartSession"></Button>
+            </Grid>
             <Line Style="{ThemeResource ApplicationHeaderLineStyle}"></Line>
         </StackPanel>
-        <Grid Grid.Row="2">
-            <StackPanel HorizontalAlignment="Center">
-                <Button></Button>
-            </StackPanel>
+
+        <Button Name = "startButton" Visibility="Visible" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Start" Width="200" Height="100" Click="StartSession"></Button>
+        
+        <Grid Margin="20,250,0,-44.833" Name="sessionData" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Speed:" FontSize="26" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="***km/h" FontSize="35" HorizontalAlignment="Right"></TextBlock>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Distance:" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Bottom"></TextBlock>
+            <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="**km" FontSize="35" HorizontalAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Elapsed Time:" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Bottom"></TextBlock>
+            <TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="** : ** : **" FontSize="35" HorizontalAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
         </Grid>
     </Grid>
 </Page>

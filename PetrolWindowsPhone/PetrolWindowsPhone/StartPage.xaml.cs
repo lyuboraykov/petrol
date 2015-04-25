@@ -35,5 +35,26 @@ namespace PetrolWindowsPhone
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }
+
+        private void StopSession(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RestartSession(object sender, RoutedEventArgs e)
+        {
+            sessionData.Visibility = Visibility.Collapsed;
+            startButton.Visibility = Visibility.Visible;
+            stopButton.IsEnabled = false;
+            restartButton.IsEnabled = false;
+        }
+
+        private void StartSession(object sender, RoutedEventArgs e)
+        {
+            sessionData.Visibility = Visibility.Visible;
+            startButton.Visibility = Visibility.Collapsed;
+            stopButton.IsEnabled = true;
+            restartButton.IsEnabled = true;
+        }
     }
 }
