@@ -119,46 +119,80 @@ a:focus {
 .rank-list {
     list-style: none;
     padding-left: 0;
+    width: 100%;
+    table-layout: fixed;
 }
 
-.rank-list li {
-    border: 1px solid white;
+.rank-list th:first-child {
+    border-top-left-radius: 10px;
+}
+
+.rank-list th:last-child {
+    border-top-right-radius: 10px;
+}
+
+.rank-list th {
+    text-align: center;
+}
+
+.rank-list tbody tr {
+    border: 1px solid grey;
+    background-color: white;
+    opacity: 0.8
+}
+
+.rank-list thead tr {
+    background-color: white;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.rank-list td span,
+th,
+td {
+    color: black;
+}
+
+.rank-list li > span {
+    line-height: 50px;
+}
+
+.rank-list .rank {
+    background: url('../img/star.png');
+    background-size: 100%;
+    width: 50px;
     height: 50px;
+    display: block;
+    line-height: 50px;
+    color: #000;
 }
 
-.rank-list li:first-child {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+.rank-list .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .inside-listItems {
-    height: 100%;
     display: table;
-}
-
-.rank {
-    text-align: left;
 }
 
 .station-name {
     font-size: 23px;
-    text-align: center;
+}
+
+.station-name,
+.address {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
 }
 
 .avg {
     text-align: right;
-}
-
-.rank {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    border-radius: 250px;
-    font-size: 20px;
-    color: black;
-    line-height: 30px;
-    text-align: center;
-    background: white;
+    line-height: 50px;
+    margin-right: 5px;
+    flex-basis: 50px;
 }
 
 @media(min-width:768px) {
