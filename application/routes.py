@@ -45,7 +45,10 @@ def get_stations():
     # logic and query params
     top_count = request.args.get('top', default=10)
     are_sorted = request.args.get('sorted', default=False)
-    stations = GasStation.query.order_by(GasStation.average_consumption).limit(top_count)
+    if are_sorted:
+        stations = GasStation.query.order_by(GasStation.average_consumption).limit(top_count)
+    else:
+        stations = GasStation.query.limit(top_count)
     if stations is None:
         return None, 404
     dict_list = []
