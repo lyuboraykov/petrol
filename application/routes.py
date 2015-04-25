@@ -84,8 +84,7 @@ def refuel():
     db.session.commit()
 
     return json.dumps({
-        'gas_station_average': gas_station.average_consumption,
-        'user_average': user_gas_station.average_consumption
+        'gas_station_average': gas_station.average_consumption
     }), 200
 
 
