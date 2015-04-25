@@ -1,4 +1,5 @@
 ﻿using PetrolWindowsPhone.Common;
+using PetrolWindowsPhone.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -33,6 +34,7 @@ namespace PetrolWindowsPhone
 			this.InitializeComponent();
 
 			this.navigationHelper = new NavigationHelper(this);
+            this.DataContext = new StatsViewModel();
 			this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
 			this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 		}
@@ -127,5 +129,10 @@ namespace PetrolWindowsPhone
 		{
 
 		}
+
+        private void ListView_Loaded(object sender, RoutedEventArgs e)
+        {
+            topStationsList.DataContext = new StatsViewModel();
+        }
 	}
 }

@@ -51,26 +51,30 @@
 				Height="100"
 				Click="StartSession"></Button>
         
-        <Grid Margin="20,250,0,-44.833" Name="sessionData" Visibility="Collapsed">
+        <Grid Margin="20,250,0,-44.833"
+              Name="sessionData"
+              Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="100"></RowDefinition>
-                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Speed:" FontSize="26" HorizontalAlignment="Center"></TextBlock>
-            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="***km/h" FontSize="35" HorizontalAlignment="Right"></TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Speed:" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="60km/h" FontSize="40" HorizontalAlignment="Right"></TextBlock>
 
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Distance:" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Bottom"></TextBlock>
-            <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="**km" FontSize="35" HorizontalAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Distance:" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="150km" FontSize="40" HorizontalAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
 
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="Elapsed Time:" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Bottom"></TextBlock>
-			<TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="** : ** : **" FontSize="35" HorizontalAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Elapsed Time:" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+			<TextBlock Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="02 : 10 : 12" FontSize="40" HorizontalAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
 
 		</Grid>
     </Grid>

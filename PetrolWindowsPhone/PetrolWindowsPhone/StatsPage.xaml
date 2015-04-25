@@ -16,37 +16,49 @@
 			</TransitionCollection>
 		</Grid.ChildrenTransitions>
 
-		<Pivot x:Uid="Pivot" Title="MY APPLICATION" x:Name="pivot" CommonNavigationTransitionInfo.IsStaggerElement="True">
+		<Pivot x:Uid="Pivot" Title="Stats" x:Name="pivot" CommonNavigationTransitionInfo.IsStaggerElement="True">
             <!--Pivot item one-->
 			<PivotItem
                 x:Uid="stationItem"
                 Margin="19,14.5,0,0"
-                Header="stations"
+                Header="Top 10"
 				CommonNavigationTransitionInfo.IsStaggerElement="True"
-                DataContext="{Binding StationsGroup}" >
+                DataContext="{Binding StationsGroup}"
+                >
 				<!-- :DataContext="{Binding Groups[0], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}"-->
                 <!--Double line list with text wrapping-->
                 <ListView
-                    ItemsSource="{Binding Items}"
+                    ItemsSource="{Binding TopTenStations}"
                     IsItemClickEnabled="True"
                     ItemClick="ItemView_ItemClick"
+                    Loaded="ListView_Loaded"
+                    Name="topStationsList"
                     ContinuumNavigationTransitionInfo.ExitElementContainer="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="0,0,0,9.5">
-                                <TextBlock
-                                    Text="{Binding Title}"
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
+                                    Text="{Binding Name}"
                                     TextWrapping="Wrap"
                                     Pivot.SlideInAnimationGroup="1"
                                     CommonNavigationTransitionInfo.IsStaggerElement="True"
                                     Style="{ThemeResource ListViewItemTextBlockStyle}"
                                     Margin="0,0,19,0"/>
-                                <TextBlock
-                                    Text="{Binding Description}"
+                                    <TextBlock
+                                    Text="{Binding City}"
                                     TextWrapping="WrapWholeWords"
                                     Pivot.SlideInAnimationGroup="2" 
                                     CommonNavigationTransitionInfo.IsStaggerElement="True" 
-                                    Style="{ThemeResource ListViewItemContentTextBlockStyle}"
+                                    Style="{ThemeResource ListViewItemTextBlockStyle}"
+                                    Margin="0,0,19,0"/>
+                                </StackPanel>
+                                <TextBlock
+                                    Text="{Binding Address}"
+                                    TextWrapping="WrapWholeWords"
+                                    Pivot.SlideInAnimationGroup="2" 
+                                    CommonNavigationTransitionInfo.IsStaggerElement="True" 
+                                    Style="{ThemeResource ListViewItemTextBlockStyle}"
                                     Margin="0,0,19,0"/>
                             </StackPanel>
                         </DataTemplate>
@@ -58,7 +70,7 @@
             <PivotItem
                 x:Uid="franchiseItem"
                 Margin="19,14.5,0,0"
-                Header="franchise"
+                Header="Franchise Rank"
                 DataContext="{Binding FranchiseGroup}" >
                <!-- d:DataContext="{Binding Groups[1], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}" -->
                 <!--Double line list no text wrapping-->
@@ -87,42 +99,11 @@
                 </ListView>
             </PivotItem>
 
-			<PivotItem
-                x:Uid="citiesItem"
-                Margin="19,14.5,0,0"
-                Header="cities"
-                DataContext="{Binding CitiesGroup}" >
-				<!-- d:DataContext="{Binding Groups[1], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}" -->
-				<!--Double line list no text wrapping-->
-				<ListView
-                    ItemsSource="{Binding Items}"
-                    IsItemClickEnabled="True"
-                    ItemClick="ItemView_ItemClick"
-                    Loaded="CitiesPivot_Loaded"
-                    ContinuumNavigationTransitionInfo.ExitElementContainer="True">
-					<ListView.ItemTemplate>
-						<DataTemplate>
-							<StackPanel Margin="0,0,0,9.5">
-								<TextBlock
-                                    Text="{Binding Title}"
-                                    Pivot.SlideInAnimationGroup="1"
-                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
-                                    Style="{StaticResource ListViewItemTextBlockStyle}"/>
-								<TextBlock
-                                    Text="{Binding Description}"
-                                    Pivot.SlideInAnimationGroup="2"
-                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
-                                    Style="{StaticResource ListViewItemContentTextBlockStyle}"/>
-							</StackPanel>
-						</DataTemplate>
-					</ListView.ItemTemplate>
-				</ListView>
-			</PivotItem>
-
+			
 			<PivotItem
                 x:Uid="PersonalItem"
                 Margin="19,14.5,0,0"
-                Header="personal"
+                Header="Personal Stats"
                 DataContext="{Binding PersonalGroup}" >
 				<!-- d:DataContext="{Binding Groups[1], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}" -->
 				<!--Double line list no text wrapping-->
