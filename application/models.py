@@ -31,7 +31,7 @@ class UserGasStation(db.Model, StationBase):
     gas_station = relationship("GasStation")
     kilometers = db.Column(db.Float)
     liters = db.Column(db.Float)
-    __table_args__ = (ForeignKeyConstraint([gas_station_city, gas_station_address], ["gas_stations.city", "gas_stations.address"]), {})
+    #__table_args__ = (ForeignKeyConstraint([gas_station_city, gas_station_address], ["gas_stations.city", "gas_stations.address"]), {})
 
     def __init__(self, user_id, gas_station_city, gas_station_address):
         self.user_id = user_id
