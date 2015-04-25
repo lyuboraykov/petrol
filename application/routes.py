@@ -19,7 +19,6 @@ def get_station(city, address):
     station = GasStation.query \
         .filter(GasStation.city == city, GasStation.address == address) \
         .first()
-    print(city, address)
     if station == None:
         return None, 404
 
