@@ -1,5 +1,6 @@
 import json
 from application import app, db
+from flask import request
 from application.models import User, GasStation, UserGasStation
 
 
@@ -31,18 +32,46 @@ def create_station(city, address, name):
         "name": station.name,
         "address": station.address,
         "city": station.city,
+        'kilometers': station.kilometers,
+        'liters': station.liters
     }), 201
 
 
 @app.route('/stations', methods=["GET"])
 def get_stations():
     # logic and query params
-    return json.dumps({'answer': 42})
+    top_count = request.args.get('top', default=10)
+    are_sorted = request.args.get('sorted', default=False)
+    stations = GasStation.query.order_by(GasStation.average_consumption).limit(top_count)
+    if stations is None:
+        return None, 404
+    dict_list = []
+    for station in stations:
+        dict_list.append({
+            'name': station.name,
+            'address': station.address,
+            'city': station.city,
+            'kilometers': station.kilometers,
+            'liters': station.liters
+        })
+    return json.dumps(dict_list), 200
 
 
 @app.route('/refuel', methods=["POST"])
 def refuel():
     # logic
+    user_id = request.args.get('user_id')
+    city = request.args.get('city')
+    address = request.args.get('address')
+    liters = request.args.get('liters')
+    kilometers = request.args.get('kilometers')
+    user_gas_station = UserGasStation.query \
+    .filter(UserGasStation.gas_station_city == city, UserGasStation.gas_station_address == address, \
+        UserGasStation.user_id == user_id).first()
+    gas_station = GasStation.query.filter(GasStation.city == city, GasStation.address == address).first()
+    user_gas_station.refuel(liters, kilometers)
+    gas_station.refuel(liters, kilometers)
+    db.session.commit()
     return json.dumps({'answer': 42})
 
 

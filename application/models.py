@@ -1,7 +1,13 @@
 from sqlalchemy import ForeignKeyConstraint
 from application import db
 
-class UserGasStation(db.Model):
+class StationBase(object):
+    def refuel(liters, kilometers):
+        self.liters += liters
+        self.kilometers += kilometers
+        self.average_consumption = (self.liters / self.kilometers) * 100
+
+class UserGasStation(db.Model, StationBase):
     user_id = db.Column(db.String(255), db.ForeignKey("users.id"), primary_key=True)
     gas_station_city = db.Column(db.String(80), primary_key=True)
     gas_station_address = db.Column(db.String(80), primary_key=True)
@@ -17,18 +23,22 @@ class UserGasStation(db.Model):
     def __repr__(self):
         return '<Id {}>'.format(self.id)
 
-class GasStation(db.Model):
+class GasStation(db.Model, StationBase):
     __tablename__ = "gas_stations"
     city = db.Column(db.String(80), primary_key=True)
     address = db.Column(db.String(80), primary_key=True)
     name = db.Column(db.String(80))
     kilometers = db.Column(db.Float)
     liters = db.Column(db.Float)
+    average_consumption = db.Column(db.Float)
 
     def __init__(self, city, address, name):
         self.city = city
         self.address = address
         self.name = name
+        self.kilometers = 0
+        self.liters = 0
+        self.average_consumption = 100
 
     def __repr__(self):
         return '<Name: {0}; City: {1}; Address: {2}>'.format(self.name, self.city, self.address)
