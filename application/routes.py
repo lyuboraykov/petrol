@@ -5,7 +5,7 @@ from application.models import User, GasStation, UserGasStation
 
 @app.route('/station/<city>/<address>', methods=["GET"])
 def get_station(city, address):
-    station = GasStation.filter(GasStation.city == city, GasStation.address == address).first()
+    station = GasStation.query.filter(GasStation.city == city, GasStation.address == address).first()
     if station is None:
         return None, 404
 
