@@ -55,6 +55,7 @@ class GasStation(db.Model):
         return '<Name: {0}; City: {1}; Address: {2}>'.format(self.name, self.city, self.address)
 
 class User(db.Model):
+    __tablename__ = 'users'
     id = db.Column(db.String(255), primary_key=True)
 
     def __init__(self, id):
