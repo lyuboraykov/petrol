@@ -23,6 +23,7 @@ class User(db.Model):
         return '<Id {}>'.format(self.id)
 
 class UserGasStation(db.Model, StationBase):
+    id = db.Column(db.String(255), primary_key=True)
     __tablename__ = 'user_gas_station'
     #user_id = db.Column(db.String(255), db.ForeignKey("users.id"), primary_key=True)
     user = relationship(User, backref=db.backref("user_gas_stations"))
