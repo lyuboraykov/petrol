@@ -22,8 +22,11 @@ def get_station(city, address):
     }), 200
 
 
-@app.route('/station/<city>/<address>/<name>', methods=["POST"])
+@app.route('/station', methods=["POST"])
 def create_station(city, address, name):
+    city = request.form.get('city')
+    address = request.form.get('address')
+    name = request.form.get('name')
     station = GasStation(city, address, name)
     db.session.add(station)
     db.session.commit()
@@ -80,7 +83,9 @@ def create_user():
     user = User(user_id)
     db.session.add(user)
     db.session.commit()
-    return user, 201
+    return json.dumps({
+        'id': user_id
+    }), 201
 
 @app.route('/')
 def home():
