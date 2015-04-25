@@ -22,3 +22,13 @@ $(function() {
 $('.navbar-collapse ul li a').click(function() {
     $('.navbar-toggle:visible').click();
 });
+
+$.getJSON("js/data.json", function(data) {
+    var items = '';
+    data.forEach(function(listItem) {
+        items += "<li>" + "<div class='inside-listItems'>" + "<span class='rank'>" + listItem.rank + "</span >" + "<span class='station-name'>" + listItem.name + "</span>" + "<span class='avg'>" + listItem.avg + "</span>" + "</div></li>";
+    });
+
+    $(".rank-list").append(items);
+
+});

@@ -1,0 +1,36 @@
+[{
+    "rank": 1,
+    "name": "Petrol",
+    "address": "test",
+    "kilometers": 500,
+    "liters": 60,
+    "avg": 3.4
+}, {
+    "rank": 2,
+    "name": "Shell",
+    "address": "test",
+    "kilometers": 100,
+    "liters": 6,
+    "avg": 3.4
+}, {
+    "rank": 3,
+    "name": "WTF",
+    "address": "test",
+    "kilometers": 700,
+    "liters": 60,
+    "avg": 3.4
+}, {
+    "rank": 4,
+    "name": "Adrian",
+    "address": "test",
+    "kilometers": 1000,
+    "liters": 100,
+    "avg": 3.4
+}, {
+    "rank": 5,
+    "name": "Petrol",
+    "address": "test",
+    "kilometers": 1400,
+    "liters": 120,
+    "avg": 3.4
+}]
