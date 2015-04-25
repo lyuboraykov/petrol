@@ -58,7 +58,7 @@ def refuel():
     user_id = request.form.get('user_id')
     city = request.form.get('city')
     address = request.form.get('address')
-    liters = request.form.get('liters')
+    liters = int(request.form.get('liters'))
     kilometers = request.form.get('kilometers')
     user_gas_station = UserGasStation.query \
     .filter(UserGasStation.gas_station_city == city, UserGasStation.gas_station_address == address, \
