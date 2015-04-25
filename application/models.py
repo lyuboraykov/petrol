@@ -11,12 +11,24 @@ class StationBase(object):
         self.kilometers += kilometers
         self.average_consumption = (self.liters / self.kilometers) * 100
 
+class User(db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.String(255), primary_key=True)
+    gas_stations = db.association_proxy("user_gas_stations", 'gas_stations')
+
+    def __init__(self, id):
+        self.id = id
+
+    def __repr__(self):
+        return '<Id {}>'.format(self.id)
 
 class UserGasStation(db.Model, StationBase):
     __tablename__ = 'user_gas_station'
-    user_id = db.Column(db.String(255), db.ForeignKey("users.id"), primary_key=True)
-    gas_station_city = db.Column(db.String(80), primary_key=True)
-    gas_station_address = db.Column(db.String(80), primary_key=True)
+    #user_id = db.Column(db.String(255), db.ForeignKey("users.id"), primary_key=True)
+    user = relationship(User, backref=db.backref("user_gas_stations"))
+    #gas_station_city = db.Column(db.String(80), primary_key=True)
+    #gas_station_address = db.Column(db.String(80), primary_key=True)
+    gas_station = relationship("GasStation")
     kilometers = db.Column(db.Float)
     liters = db.Column(db.Float)
     __table_args__ = (ForeignKeyConstraint([gas_station_city, gas_station_address], ["gas_stations.city", "gas_stations.address"]), {})
@@ -51,14 +63,3 @@ class GasStation(db.Model, StationBase):
     def __repr__(self):
         return '<Name: {0}; City: {1}; Address: {2}>'.format(self.name, self.city, self.address)
 
-
-class User(db.Model):
-    __tablename__ = 'users'
-    id = db.Column(db.String(255), primary_key=True)
-    gas_stations = db.relationship("UserGasStation")
-
-    def __init__(self, id):
-        self.id = id
-
-    def __repr__(self):
-        return '<Id {}>'.format(self.id)
