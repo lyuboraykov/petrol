@@ -9,32 +9,24 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 	<Grid>
-		<Button Height="80"
-				Width="320"
-				HorizontalAlignment="Center"
-				HorizontalContentAlignment="Left">
-			<Button.Content>
-				<Grid>
-					<Grid.RowDefinitions>
-						<RowDefinition/>
-					</Grid.RowDefinitions>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="50" />
-						<ColumnDefinition />
-					</Grid.ColumnDefinitions>
-					<Image Grid.Column="0"
-						   Height="38"
-						   Margin="0,3,0,0"
-						   Source="Assets/facebook-icon.png"
-						   HorizontalAlignment="Left"
-						   VerticalAlignment="Center"></Image>
-					<TextBlock Grid.Column="1"
-							   VerticalAlignment="Center"
-							   FontSize="40"
-							   Margin="10,-5,0,0"
-							   HorizontalAlignment="Left">Login</TextBlock>
-				</Grid>
-			</Button.Content>
+		<Grid.ChildrenTransitions>
+			<TransitionCollection>
+				<EntranceThemeTransition/>
+			</TransitionCollection>
+		</Grid.ChildrenTransitions>
+
+		<Button Height="90"
+				Width="370"
+				Click="FacebookLoginButton_Click"
+				HorizontalAlignment="Center">
+			<Button.Background>
+				<ImageBrush
+					Stretch="UniformToFill"
+				   ImageSource="Assets/facebook-login.png" />
+			</Button.Background>
+			<Button.BorderBrush>
+				transparent
+			</Button.BorderBrush>
 		</Button>
 	</Grid>
 </Page>
