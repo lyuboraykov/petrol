@@ -40,7 +40,16 @@
             <Line Style="{ThemeResource ApplicationHeaderLineStyle}"></Line>
         </StackPanel>
 
-        <Button Name = "startButton" Visibility="Visible" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Start" Width="200" Height="100" Click="StartSession"></Button>
+        <Button Name = "startButton"
+				Visibility="Visible"
+				Grid.Row="2"
+				Grid.ColumnSpan="3"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Bottom"
+				Content="Start"
+				Width="200"
+				Height="100"
+				Click="StartSessionButton_Click"></Button>
         
         <Grid Margin="20,250,0,-44.833" Name="sessionData" Visibility="Collapsed">
             <Grid.RowDefinitions>
@@ -61,7 +70,8 @@
             <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="**km" FontSize="35" HorizontalAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
 
             <TextBlock Grid.Row="3" Grid.Column="0" Text="Elapsed Time:" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Bottom"></TextBlock>
-            <TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="** : ** : **" FontSize="35" HorizontalAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
-        </Grid>
+			<TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="** : ** : **" FontSize="35" HorizontalAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
+
+		</Grid>
     </Grid>
 </Page>

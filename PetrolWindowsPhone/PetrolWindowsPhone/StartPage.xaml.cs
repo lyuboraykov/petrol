@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetrolWindowsPhone.Common;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,15 @@ namespace PetrolWindowsPhone
     /// </summary>
     public sealed partial class StartPage : Page
     {
+		private NavigationHelper navigationHelper;
+
         public StartPage()
         {
-            this.InitializeComponent();
+			this.InitializeComponent();
+
+			this.navigationHelper = new NavigationHelper(this);
+			this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
+			this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
         }
 
         /// <summary>
@@ -41,6 +48,14 @@ namespace PetrolWindowsPhone
 
         }
 
+		private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
+		{
+		}
+
+		private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
+		{
+		}
+
         private void RestartSession(object sender, RoutedEventArgs e)
         {
             sessionData.Visibility = Visibility.Collapsed;
@@ -49,12 +64,15 @@ namespace PetrolWindowsPhone
             restartButton.IsEnabled = false;
         }
 
-        private void StartSession(object sender, RoutedEventArgs e)
+        private async void StartSessionButton_Click(object sender, RoutedEventArgs e)
         {
+			//buttons visibility
             sessionData.Visibility = Visibility.Visible;
             startButton.Visibility = Visibility.Collapsed;
             stopButton.IsEnabled = true;
             restartButton.IsEnabled = true;
+
+			//get location
         }
     }
 }
