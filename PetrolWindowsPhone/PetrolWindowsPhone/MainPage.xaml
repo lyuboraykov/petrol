@@ -15,6 +15,12 @@
 			</TransitionCollection>
 		</Grid.ChildrenTransitions>
 
+		<StackPanel Grid.Row="0" Margin="19,0,0,0">
+			<TextBlock Text="Petrol" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,0,12,0" HorizontalAlignment="Right"/>
+			<TextBlock Text="New Session" Style="{ThemeResource ApplicationHeaderPageTitleStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+			<Line Style="{ThemeResource ApplicationHeaderLineStyle}"></Line>
+		</StackPanel>
+
 		<Button Height="90"
 				Width="370"
 				Click="FacebookLoginButton_Click"
