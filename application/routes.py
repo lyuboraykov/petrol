@@ -27,7 +27,7 @@ def get_station(city, address):
 
 
 @app.route('/station', methods=["POST"])
-def create_station(city, address, name):
+def create_station():
     city = request.form.get('city')
     address = request.form.get('address')
     name = request.form.get('name')
