@@ -1,4 +1,6 @@
-from sqlalchemy import ForeignKeyConstraint, backref
+from sqlalchemy import ForeignKeyConstraint
+from sqlalchemy.orm import relationship, backref
+
 from application import db
 
 class StationBase(object):
