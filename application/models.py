@@ -1,4 +1,4 @@
-from sqlalchemy import ForeignKeyConstraint
+from sqlalchemy import ForeignKeyConstraint, backref
 from application import db
 
 class StationBase(object):
