@@ -14,7 +14,7 @@ class StationBase(object):
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.String(255), primary_key=True)
-    gas_stations = association_proxy("user_gas_stations", 'gas_stations')
+    # gas_stations = association_proxy("user_gas_stations", 'gas_stations')
 
     def __init__(self, id):
         self.id = id
@@ -25,14 +25,14 @@ class User(db.Model):
 class UserGasStation(db.Model, StationBase):
     id = db.Column(db.String(255), primary_key=True)
     __tablename__ = 'user_gas_station'
-    #user_id = db.Column(db.String(255), db.ForeignKey("users.id"), primary_key=True)
-    user = relationship(User, backref=db.backref("user_gas_stations"))
-    #gas_station_city = db.Column(db.String(80), primary_key=True)
-    #gas_station_address = db.Column(db.String(80), primary_key=True)
-    gas_station = relationship("GasStation")
+    user_id = db.Column(db.String(255), db.ForeignKey("users.id"), primary_key=True)
+    gas_station_city = db.Column(db.String(80), primary_key=True)
+    gas_station_address = db.Column(db.String(80), primary_key=True)
     kilometers = db.Column(db.Float)
     liters = db.Column(db.Float)
-    #__table_args__ = (ForeignKeyConstraint([gas_station_city, gas_station_address], ["gas_stations.city", "gas_stations.address"]), {})
+    gas_station = db.relationship("GasStation")
+    user = db.relationship("User")
+    __table_args__ = (ForeignKeyConstraint([gas_station_city, gas_station_address], ["gas_stations.city", "gas_stations.address"]), {})
 
     def __init__(self, user_id, gas_station_city, gas_station_address):
         self.user_id = user_id
@@ -51,7 +51,6 @@ class GasStation(db.Model, StationBase):
     kilometers = db.Column(db.Float)
     liters = db.Column(db.Float)
     average_consumption = db.Column(db.Float)
-    users = db.relationship("UserGasStation")
 
     def __init__(self, city, address, name):
         self.city = city
@@ -63,4 +62,3 @@ class GasStation(db.Model, StationBase):
 
     def __repr__(self):
         return '<Name: {0}; City: {1}; Address: {2}>'.format(self.name, self.city, self.address)
-

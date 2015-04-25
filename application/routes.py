@@ -71,13 +71,13 @@ def refuel():
     user = User.query.filter(User.id == user_id)
     gas_station = GasStation.query.filter(GasStation.address == address, GasStation.liters == liters)
 
-    if gas_station not in user.gas_stations:
-        user.gas_stations.append(gas_station)
-
-    user_gas_station = UserGasStation.query \
-        .filter(UserGasStation.gas_station_city == city,
-                UserGasStation.gas_station_address == address,
-                UserGasStation.user_id == user_id).first()
+    # if gas_station not in user.gas_stations:
+    #     user.gas_stations.append(gas_station)
+    #
+    # user_gas_station = UserGasStation.query \
+    #     .filter(UserGasStation.gas_station_city == city,
+    #             UserGasStation.gas_station_address == address,
+    #             UserGasStation.user_id == user_id).first()
 
     user_gas_station.refuel(liters, kilometers)
     gas_station.refuel(liters, kilometers)
