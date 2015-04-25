@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
+using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -107,5 +108,21 @@ namespace PetrolWindowsPhone
 		}
 
 		#endregion
+
+		private void LogoutButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void AddAppBarButton_Click(object sender, RoutedEventArgs e)
+		{
+			this.Frame.Navigate(typeof(StatsPage));
+		}
+
+		private void RefuelSaveButton_Click(object sender, RoutedEventArgs e)
+		{
+			double refuel = int.Parse(RefuelTextBox.Text);
+			//TODO: send
+		}
 	}
 }

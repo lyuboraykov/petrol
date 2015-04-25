@@ -37,7 +37,7 @@
 	</Grid>
 	<Page.BottomAppBar>
 		<CommandBar>
-			<AppBarButton x:Uid="AddAppBarButton" x:Name="AddAppBarButton" Label="stats" Icon="AllApps" Click="AddAppBarButton_Click" />
+			<AppBarButton x:Uid="StatsAppBarButton" x:Name="StatsAppBarButton" Label="stats" Icon="AllApps" Click="AddAppBarButton_Click" />
 			<CommandBar.SecondaryCommands>
 				<AppBarButton x:Uid="LogoutButton" x:Name="LogoutButton" Click="LogoutButton_Click" Label="logout" />
 				<AppBarButton x:Uid="RefuelButton" x:Name="RefuelButton" Click="RefuelButton_Click" Label="refuel" />
