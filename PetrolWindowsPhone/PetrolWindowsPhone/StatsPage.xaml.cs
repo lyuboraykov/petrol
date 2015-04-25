@@ -23,12 +23,12 @@ namespace PetrolWindowsPhone
 	/// <summary>
 	/// An empty page that can be used on its own or navigated to within a Frame.
 	/// </summary>
-	public sealed partial class BasicPage1 : Page
+	public sealed partial class StatsPage : Page
 	{
 		private NavigationHelper navigationHelper;
 		private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-		public BasicPage1()
+		public StatsPage()
 		{
 			this.InitializeComponent();
 
@@ -107,5 +107,25 @@ namespace PetrolWindowsPhone
 		}
 
 		#endregion
+
+		private void ItemView_ItemClick(object sender, ItemClickEventArgs e)
+		{
+
+		}
+
+		private void FranchisePivot_Loaded(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void PersonalPivot_Loaded(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void CitiesPivot_Loaded(object sender, RoutedEventArgs e)
+		{
+
+		}
 	}
 }

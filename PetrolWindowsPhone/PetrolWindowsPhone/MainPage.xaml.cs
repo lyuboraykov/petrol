@@ -62,5 +62,10 @@ namespace PetrolWindowsPhone
 		{
 
 		}
+
+		private void AddAppBarButton_Click(object sender, RoutedEventArgs e)
+		{
+			this.Frame.Navigate(typeof(StatsPage));
+		}
     }
 }
