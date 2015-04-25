@@ -16,7 +16,7 @@ def create_station(city, address, name):
     db.session.add(station)
     db.session.commit()
 
-    return jsonify(me), 201
+    return jsonify(station), 201
 
 @app.route('/stations', methods=["GET"])
 def get_stations():
