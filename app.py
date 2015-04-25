@@ -4,9 +4,11 @@ from flask import Flask
 from flask import render_template, request
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKeyConstraint
+from routes import routes
 
 app = Flask(__name__, static_url_path='/static')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+app.register_blueprint(routes)
 app.debug = True
 db = SQLAlchemy(app)
 
