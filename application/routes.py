@@ -1,6 +1,7 @@
-from flask import Flask, request, jsonify send_from_directory
+from flask import jsonify
 from application import app, db
 from application.models import User, GasStation, UserGasStation
+
 
 @app.route('/station/<city>/<address>', methods=["GET"])
 def get_station(city, address):
