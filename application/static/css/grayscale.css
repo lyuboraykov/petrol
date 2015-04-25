@@ -138,6 +138,9 @@ a:focus {
 .rank-list tbody tr {
     border: 1px solid grey;
     background-color: white;
+}
+
+.rank-list tbody tr:nth-child(odd) {
     opacity: 0.8
 }
 
