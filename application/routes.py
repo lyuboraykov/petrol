@@ -76,7 +76,7 @@ def refuel():
 
 @app.route('/user', methods=['POST'])
 def create_user():
-    def user_id = request.args.get('id')
+    user_id = request.args.get('id')
     user = User(user_id)
     db.session.add(user)
     db.session.commit
