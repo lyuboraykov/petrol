@@ -9,7 +9,7 @@ def get_station(city, address):
     if station is None:
         return None, 404
 
-    return jsonpickle.encode(station), 200
+    return jsonpickle.encode(station, unpickable=False), 200
 
 @app.route('/station/<city>/<address>/<name>', methods=["POST"])
 def create_station(city, address, name):
@@ -17,7 +17,7 @@ def create_station(city, address, name):
     db.session.add(station)
     db.session.commit()
 
-    return jsonpickle.encode(station), 201
+    return jsonpickle.encode(station, unpickable=False), 201
 
 @app.route('/stations', methods=["GET"])
 def get_stations():
