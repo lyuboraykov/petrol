@@ -24,4 +24,4 @@ def refuel():
 
 @routes.route('/')
 def home():
-    return app.send_static_file('index.html')
+    return routes.send_static_file('index.html')
