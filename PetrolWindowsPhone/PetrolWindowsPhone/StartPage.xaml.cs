@@ -65,11 +65,15 @@ namespace PetrolWindowsPhone
 	{
 		private NavigationHelper navigationHelper;
 		private Geolocator geolocator;
-		private static DateTime lastDateTime;
-		private static DateTime currentDateTime;
+		private static long lastDateTime;
+		private static long currentDateTime;
 		private static int totalCalls;
 		private static double totalDistance;
-		private static double THRESHOLD_MOVEMENT = 20.0;
+		private static double THRESHOLD_MOVEMENT = 10.0;
+		DispatcherTimer _timer;
+
+
+		private static long _startTimeTicks;
 
 		SpeedCoef[] speedCoefList = new SpeedCoef[]
 		{
@@ -97,6 +101,18 @@ namespace PetrolWindowsPhone
 			this.navigationHelper = new NavigationHelper(this);
 			this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
 			this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+
+
+			_timer = new DispatcherTimer();
+			_timer.Interval = new TimeSpan(0, 0, 0, 0, 100); // 100 Milliseconds 
+			_timer.Tick += DispatcherTimer_Tick;
+			
+		}
+
+		void DispatcherTimer_Tick(object sender, object e)
+		{
+			TimeSpan ts = new TimeSpan(DateTime.Now.Ticks - _startTimeTicks);
+			ElapsedTimeTextBlock.Text = String.Format("{0:D2}:{1:D2}:{2:D2}", ts.Hours, ts.Minutes, ts.Seconds);
 		}
 
 		private void InitializeGeolocator()
@@ -104,7 +120,9 @@ namespace PetrolWindowsPhone
 			geolocator = new Geolocator();
 			geolocator.DesiredAccuracyInMeters = 50;
 			geolocator.MovementThreshold = THRESHOLD_MOVEMENT;
+			//geolocator.ReportInterval = 1000;
 			geolocator.PositionChanged += geolocator_PositionChanged;
+			geolocator.StatusChanged += geolocator_StatusChanged;
 		}
 
 		/// <summary>
@@ -147,8 +165,9 @@ namespace PetrolWindowsPhone
 
 			//get location
 			InitializeGeolocator();
-			currentDateTime = DateTime.Now;
-
+			currentDateTime = DateTime.Now.Ticks;
+			_startTimeTicks = DateTime.Now.Ticks;
+			_timer.Start();
 			try
 			{
 				Geoposition geoposition = await geolocator.GetGeopositionAsync(
@@ -182,7 +201,7 @@ namespace PetrolWindowsPhone
 			}
 		}
 
-		void geolocator_StatusChanged(Geolocator sender, StatusChangedEventArgs args)
+		async void geolocator_StatusChanged(Geolocator sender, StatusChangedEventArgs args)
 		{
 		}
 
@@ -193,9 +212,9 @@ namespace PetrolWindowsPhone
 				SpeedTextBlock.Text = args.Position.Coordinate.Speed.ToString();
 				//geolocation.Text = args.Position.Coordinate.Speed.ToString();
 				lastDateTime = currentDateTime;
-				currentDateTime = DateTime.Now;
+				currentDateTime = DateTime.Now.Ticks;
 				//vremeto mejdu za koito sme izminali metrite
-				TimeSpan timeInterval = lastDateTime - currentDateTime;
+				TimeSpan timeInterval = new TimeSpan(lastDateTime - currentDateTime);
 
 				//v = s/t;
 				double metersPerSecond = THRESHOLD_MOVEMENT / timeInterval.Ticks;
@@ -221,7 +240,7 @@ namespace PetrolWindowsPhone
 				totalDistance += distanceWithCoef;
 
 				DistanceTextBlock.Text = totalDistance.ToString("0.00");
-				ElapsedTimeTextBlock.Text = string.Format("{0}:{1}:{2}", timeInterval.Hours, timeInterval.Minutes, timeInterval.Seconds);
+				//ElapsedTimeTextBlock.Text = string.Format("{0}:{1}:{2}", timeInterval.Hours, timeInterval.Minutes, timeInterval.Seconds);
 			});
 		}
 
