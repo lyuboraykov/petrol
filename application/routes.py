@@ -47,8 +47,8 @@ def get_stations():
     if are_sorted:
         average_kilometers = db.session.query(func.avg(GasStation.kilometers))
         stations = GasStation.query \
-                            .filter(GasStation.kilometers > average_kilometers) \
-                            .order_by(GasStation.average_consumption.all()[0][0]) \
+                            .filter(GasStation.kilometers > average_kilometers.all()[0][0]) \
+                            .order_by(GasStation.average_consumption) \
                             .limit(top_count)
     else:
         stations = GasStation.query.limit(top_count)
