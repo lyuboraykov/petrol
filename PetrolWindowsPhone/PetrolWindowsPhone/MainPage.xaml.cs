@@ -35,7 +35,7 @@ namespace PetrolWindowsPhone
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
-            this.Toast();
+          //  this.Toast();
 
           //  ToastTemplateType toastTemplate = ToastTemplateType.ToastText02;
           //  XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(toastTemplate);
@@ -101,7 +101,6 @@ namespace PetrolWindowsPhone
             string toastHeader = "TOASTOAT";
             string toastContent = "TESTESTESTES";
             manager.SendScheduledToast(toastHeader, toastContent, toastOffset);
-           
         }
 		private void LogoutButton_Click(object sender, RoutedEventArgs e)
 		{
