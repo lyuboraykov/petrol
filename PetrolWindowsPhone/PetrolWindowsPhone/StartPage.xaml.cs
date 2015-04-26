@@ -71,7 +71,7 @@ namespace PetrolWindowsPhone
 		private static double totalDistance;
 		private static double THRESHOLD_MOVEMENT = 10.0;
 		DispatcherTimer _timer;
-
+		private static double distanceToDisplay;
 
 		private static long _startTimeTicks;
 
@@ -238,8 +238,9 @@ namespace PetrolWindowsPhone
 				}
 
 				totalDistance += distanceWithCoef;
+				distanceToDisplay += distanceWithCoef;
 
-				DistanceTextBlock.Text = totalDistance.ToString("0.00");
+				DistanceTextBlock.Text = distanceToDisplay.ToString("0.00");
 				//ElapsedTimeTextBlock.Text = string.Format("{0}:{1}:{2}", timeInterval.Hours, timeInterval.Minutes, timeInterval.Seconds);
 			});
 		}
