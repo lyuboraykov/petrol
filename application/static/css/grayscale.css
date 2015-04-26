@@ -135,7 +135,7 @@ a:focus {
 }
 
 .rank-list tbody tr:nth-child(odd) {
-    opacity: 0.8
+    background-color: antiquewhite;
 }
 
 .rank-list thead tr {
