@@ -34,7 +34,7 @@ $.getJSON("http://petrol-web.herokuapp.com/stations", function(data) {
             "</td>" +
             "<td>" +
             "<span class='station-name'>" + listItem.name + "</span>" +
-            "<span class='address'>" + listItem.address + "</span>" +
+            "<span class='address'>" + listItem.city + ", " + listItem.address + "</span>" +
             "</td>" +
             "<td>" + listItem.liters + "l." + "</td>" +
             "<td>" + listItem.kilometers + "km." + "</td>" +
