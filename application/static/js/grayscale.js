@@ -23,7 +23,7 @@ $('.navbar-collapse ul li a').click(function() {
     $('.navbar-toggle:visible').click();
 });
 
-$.getJSON("/static/js/data.json", function(data) {
+$.getJSON("http://petrol-web.herokuapp.com/stations", function(data) {
     var items = '',
         index = 1;
     data.forEach(function(listItem) {
