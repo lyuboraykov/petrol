@@ -78,5 +78,6 @@
 			<TextBlock Grid.Row="3" Grid.Column="0" Text="Elapsed Time:" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Bottom"></TextBlock>
 			<TextBlock Name="ElapsedTimeTextBlock" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" FontSize="35" HorizontalAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
 		</Grid>
+
 	</Grid>
 </Page>

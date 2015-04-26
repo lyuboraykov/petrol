@@ -22,7 +22,6 @@ using Windows.UI.Xaml.Navigation;
 
 namespace PetrolWindowsPhone
 {
-<<<<<<< Updated upstream
 	class SpeedCoef
 	{
 		private double kmPerHour;
@@ -219,79 +218,10 @@ namespace PetrolWindowsPhone
 				}
 
 				totalDistance += distanceWithCoef;
+
 				DistanceTextBlock.Text = totalDistance.ToString("0.00");
 				ElapsedTimeTextBlock.Text = string.Format("{0}:{1}:{2}", timeInterval.Hours, timeInterval.Minutes, timeInterval.Seconds);
 			});
 		}
 	}
-=======
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class StartPage : Page
-    {
-        private NavigationHelper navigationHelper;
-        public StartPage()
-        {
-            this.InitializeComponent();
-            this.navigationHelper = new NavigationHelper(this);
-            RemoteDataManager manager = new RemoteDataManager();
-            this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
-            this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
-          //  manager.AddStation("treewurywhflw7364r729q", "Sofia", "Okolovrusten put", 234.45, 2500);
-        }
-
-        private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
-        {
-        }
-
-        private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
-        {
-        }
-
-        private async Task<MapAddress> GeoLocation(Geoposition position)
-        {
-            BasicGeoposition pos = new BasicGeoposition();
-            pos.Latitude = position.Coordinate.Point.Position.Latitude;
-            pos.Longitude = position.Coordinate.Point.Position.Longitude;
-            Geopoint pointToReverseGeocode = new Geopoint(pos);
-            
-            MapLocationFinderResult result = await MapLocationFinder.FindLocationsAtAsync(pointToReverseGeocode);
-
-            // here also it should be checked if there result isn't null and what to do in such a case
-            MapAddress address = result.Locations[0].Address;
-            return address;
-        }
-
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-        }
-
-        private void StopSession(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void RestartSession(object sender, RoutedEventArgs e)
-        {
-            sessionData.Visibility = Visibility.Collapsed;
-            startButton.Visibility = Visibility.Visible;
-            stopButton.IsEnabled = true;
-            restartButton.IsEnabled = true;
-        }
-
-        private void StartSession(object sender, RoutedEventArgs e)
-        {
-            sessionData.Visibility = Visibility.Visible;
-            startButton.Visibility = Visibility.Collapsed;
-            stopButton.IsEnabled = true;
-            restartButton.IsEnabled = true;
-        }
-    }
->>>>>>> Stashed changes
 }
