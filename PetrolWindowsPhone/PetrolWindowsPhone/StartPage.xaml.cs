@@ -201,6 +201,41 @@ namespace PetrolWindowsPhone
 			//}
 		}
 
+		private async void CheckPetrolStation(double longitude, double latitude)
+		{
+			BasicGeoposition myLocation = new BasicGeoposition
+			{
+				Longitude = longitude,
+				Latitude = latitude
+			};
+
+			Geopoint geopoint = new Geopoint(myLocation);
+			MapLocationFinderResult result = await MapLocationFinder.FindLocationsAtAsync(geopoint);//(("OMV", p, 1);
+			//MapLocationFinder.FindLocationsAsync("omv", p, 10);
+
+			//hardcode fmi to be petrolstation
+			foreach (MapLocation mapLocation in result.Locations)
+			{
+				if (mapLocation.Description.IndexOf("omv", StringComparison.CurrentCultureIgnoreCase) >= 0 ||
+					mapLocation.Description.IndexOf("shell", StringComparison.CurrentCultureIgnoreCase) >= 0 ||
+					mapLocation.Description.IndexOf("eko", StringComparison.CurrentCultureIgnoreCase) >= 0 ||
+					mapLocation.Description.IndexOf("lukoil", StringComparison.CurrentCultureIgnoreCase) >= 0 ||
+					mapLocation.Description.IndexOf("rompetrol", StringComparison.CurrentCultureIgnoreCase) >= 0 ||
+					mapLocation.Description.IndexOf("petrol", StringComparison.CurrentCultureIgnoreCase) >= 0 ||
+					mapLocation.Description.IndexOf("gazprom", StringComparison.CurrentCultureIgnoreCase) >= 0 ||
+					mapLocation.DisplayName.IndexOf("omv", StringComparison.CurrentCultureIgnoreCase) >= 0 ||
+					mapLocation.DisplayName.IndexOf("shell", StringComparison.CurrentCultureIgnoreCase) >= 0 ||
+					mapLocation.DisplayName.IndexOf("lukoil", StringComparison.CurrentCultureIgnoreCase) >= 0 ||
+					mapLocation.DisplayName.IndexOf("rompetrol", StringComparison.CurrentCultureIgnoreCase) >= 0 ||
+					mapLocation.DisplayName.IndexOf("petrol", StringComparison.CurrentCultureIgnoreCase) >= 0 ||
+					mapLocation.DisplayName.IndexOf("gazprom", StringComparison.CurrentCultureIgnoreCase) >= 0)
+				{
+					ToastManager toastManager = new ToastManager();
+					toastManager.SendToast("Petrol station nearby", "Are you going to refuel?");
+				}
+			}
+		}
+
 		async void geolocator_StatusChanged(Geolocator sender, StatusChangedEventArgs args)
 		{
 		}
@@ -218,6 +253,11 @@ namespace PetrolWindowsPhone
 
 				//v = s/t;
 				double metersPerSecond = THRESHOLD_MOVEMENT / timeInterval.Ticks;
+
+				if (metersPerSecond == 0.0)
+				{
+					CheckPetrolStation(args.Position.Coordinate.Longitude, args.Position.Coordinate.Latitude);
+				}
 
 				double kmPerHour = metersPerSecond * 3.6;
 
