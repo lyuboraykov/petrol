@@ -1,6 +1,7 @@
 import json
 from application import app, db
 from flask import request
+from sqlalchemy.sql import func
 from application.models import User, GasStation, UserGasStation
 
 
@@ -44,7 +45,11 @@ def get_stations():
     are_sorted = request.args.get('sorted', default=False)
 
     if are_sorted:
-        stations = GasStation.query.order_by(GasStation.average_consumption).limit(top_count)
+        average_kilometers = db.session.query(func.avg(GasStation.kilometers))
+        stations = GasStation.query \
+                            .filter(GasStation.kilometers > average_kilometers) \
+                            .order_by(GasStation.average_consumption.all()[0][0]) \
+                            .limit(top_count)
     else:
         stations = GasStation.query.limit(top_count)
 
