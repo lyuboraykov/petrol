@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Data.Xml.Dom;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -33,6 +35,23 @@ namespace PetrolWindowsPhone
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+            this.Toast();
+
+          //  ToastTemplateType toastTemplate = ToastTemplateType.ToastText02;
+          //  XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(toastTemplate);
+          //
+          //  XmlNodeList toastTextElements = toastXml.GetElementsByTagName("text");
+          //  toastTextElements[0].AppendChild(toastXml.CreateTextNode("aefafa"));
+          //  toastTextElements[1].AppendChild(toastXml.CreateTextNode("wferteratgrege"));
+          //
+          //  IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
+          //  ((XmlElement)toastNode).SetAttribute("duration", "long");
+          //
+          //  ToastNotification toast = new ToastNotification(toastXml);
+          //  toast.ExpirationTime = DateTimeOffset.UtcNow.AddSeconds(3600);
+          //
+          //  ToastNotificationManager.CreateToastNotifier().Show(toast);
+
         }
 
         private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
@@ -73,6 +92,17 @@ namespace PetrolWindowsPhone
 			this.Frame.Navigate(typeof(RefuelPage));
 		}
 
+        private void Toast()
+        {
+            DateTime now = DateTime.Now;
+            DateTime date = now.AddMinutes(1);
+            DateTimeOffset toastOffset = new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
+            ToastManager manager = new ToastManager();
+            string toastHeader = "TOASTOAT";
+            string toastContent = "TESTESTESTES";
+            manager.SendScheduledToast(toastHeader, toastContent, toastOffset);
+           
+        }
 		private void LogoutButton_Click(object sender, RoutedEventArgs e)
 		{
 

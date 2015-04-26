@@ -8,7 +8,8 @@
             this.City = city;
             this.Address = address;
             this.Liters = liters;
-            this.Distance = distance;
+            this.Kilometers = distance;
+            this.Consumption = (liters / distance) * 100;
         }
 
         public Station()
@@ -24,6 +25,8 @@
 
         public double Liters { get; set; }
 
-        public double Distance { get; set; }
+        public double Kilometers { get; set; }
+
+        public double Consumption { get; set; }
     }
 }

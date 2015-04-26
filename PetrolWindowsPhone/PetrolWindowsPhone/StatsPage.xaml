@@ -10,59 +10,30 @@
 
     <Grid x:Name="LayoutRoot">
 
-		<Grid.ChildrenTransitions>
-			<TransitionCollection>
-				<EntranceThemeTransition/>
-			</TransitionCollection>
-		</Grid.ChildrenTransitions>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
 
-		<Pivot x:Uid="Pivot" Title="Stats" x:Name="pivot" CommonNavigationTransitionInfo.IsStaggerElement="True">
+        <Pivot x:Uid="Pivot" Title="Stats" x:Name="pivot" CommonNavigationTransitionInfo.IsStaggerElement="True">
             <!--Pivot item one-->
-			<PivotItem
+            <PivotItem
                 x:Uid="stationItem"
                 Margin="19,14.5,0,0"
                 Header="Top 10"
 				CommonNavigationTransitionInfo.IsStaggerElement="True"
                 DataContext="{Binding StationsGroup}"
                 >
-				<!-- :DataContext="{Binding Groups[0], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}"-->
+                <!-- :DataContext="{Binding Groups[0], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}"-->
                 <!--Double line list with text wrapping-->
                 <ListView
                     ItemsSource="{Binding TopTenStations}"
                     IsItemClickEnabled="True"
-                    ItemClick="ItemView_ItemClick"
                     Loaded="ListView_Loaded"
-                    Name="topStationsList"
-                    ContinuumNavigationTransitionInfo.ExitElementContainer="True">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="0,0,0,9.5">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock
-                                    Text="{Binding Name}"
-                                    TextWrapping="Wrap"
-                                    Pivot.SlideInAnimationGroup="1"
-                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
-                                    Style="{ThemeResource ListViewItemTextBlockStyle}"
-                                    Margin="0,0,19,0"/>
-                                    <TextBlock
-                                    Text="{Binding City}"
-                                    TextWrapping="WrapWholeWords"
-                                    Pivot.SlideInAnimationGroup="2" 
-                                    CommonNavigationTransitionInfo.IsStaggerElement="True" 
-                                    Style="{ThemeResource ListViewItemTextBlockStyle}"
-                                    Margin="0,0,19,0"/>
-                                </StackPanel>
-                                <TextBlock
-                                    Text="{Binding Address}"
-                                    TextWrapping="WrapWholeWords"
-                                    Pivot.SlideInAnimationGroup="2" 
-                                    CommonNavigationTransitionInfo.IsStaggerElement="True" 
-                                    Style="{ThemeResource ListViewItemTextBlockStyle}"
-                                    Margin="0,0,19,0"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
+                    x:Name="topStationsList"
+                    ItemClick="Station_ItemClick"
+                    ItemTemplate="{StaticResource StationItemTemplate}">
                 </ListView>
             </PivotItem>
 
@@ -72,13 +43,85 @@
                 Margin="19,14.5,0,0"
                 Header="Franchise Rank"
                 DataContext="{Binding FranchiseGroup}" >
-               <!-- d:DataContext="{Binding Groups[1], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}" -->
+                <!-- d:DataContext="{Binding Groups[1], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}" -->
+                <!--Double line list no text wrapping-->
+                <ListView
+                    Name="franchiseList"
+                    ItemsSource="{Binding FranchiseRank}"
+                    IsItemClickEnabled="True"
+                    Loaded="FranchisePivot_Loaded"
+                    ContinuumNavigationTransitionInfo.ExitElementContainer="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"></ColumnDefinition>
+                                    <ColumnDefinition Width="180"></ColumnDefinition>
+                                    <ColumnDefinition Width="180"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.RowSpan="2"
+                                    Text="{Binding Name}"
+                                    Pivot.SlideInAnimationGroup="1"
+                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
+                                    Foreground="Red"
+                                    FontSize="40"
+                                    VerticalAlignment="Center"/>
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Text="liters"
+                                    HorizontalAlignment="Center"
+                                    Pivot.SlideInAnimationGroup="2"
+                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
+                                    Style="{StaticResource LabelsListItem}"/>
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    Text="km"
+                                    Pivot.SlideInAnimationGroup="2"
+                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
+                                    Style="{StaticResource LabelsListItem}"/>
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Center"
+                                    Text="{Binding Liters}"
+                                    Pivot.SlideInAnimationGroup="2"
+                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
+                                    Style="{StaticResource InfoListItem}"/>
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    Text="{Binding Distance}"
+                                    Pivot.SlideInAnimationGroup="2"
+                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
+                                    Style="{StaticResource InfoListItem}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </PivotItem>
+
+
+            <PivotItem
+                x:Uid="PersonalItem"
+                Margin="19,14.5,0,0"
+                Header="Personal Stats"
+                DataContext="{Binding PersonalGroup}" >
+                <!-- d:DataContext="{Binding Groups[1], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}" -->
                 <!--Double line list no text wrapping-->
                 <ListView
                     ItemsSource="{Binding Items}"
                     IsItemClickEnabled="True"
-                    ItemClick="ItemView_ItemClick"
-                    Loaded="FranchisePivot_Loaded"
+                    Loaded="PersonalPivot_Loaded"
                     ContinuumNavigationTransitionInfo.ExitElementContainer="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -98,40 +141,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </PivotItem>
+        </Pivot>
 
-			
-			<PivotItem
-                x:Uid="PersonalItem"
-                Margin="19,14.5,0,0"
-                Header="Personal Stats"
-                DataContext="{Binding PersonalGroup}" >
-				<!-- d:DataContext="{Binding Groups[1], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}" -->
-				<!--Double line list no text wrapping-->
-				<ListView
-                    ItemsSource="{Binding Items}"
-                    IsItemClickEnabled="True"
-                    ItemClick="ItemView_ItemClick"
-                    Loaded="PersonalPivot_Loaded"
-                    ContinuumNavigationTransitionInfo.ExitElementContainer="True">
-					<ListView.ItemTemplate>
-						<DataTemplate>
-							<StackPanel Margin="0,0,0,9.5">
-								<TextBlock
-                                    Text="{Binding Title}"
-                                    Pivot.SlideInAnimationGroup="1"
-                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
-                                    Style="{StaticResource ListViewItemTextBlockStyle}"/>
-								<TextBlock
-                                    Text="{Binding Description}"
-                                    Pivot.SlideInAnimationGroup="2"
-                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
-                                    Style="{StaticResource ListViewItemContentTextBlockStyle}"/>
-							</StackPanel>
-						</DataTemplate>
-					</ListView.ItemTemplate>
-				</ListView>
-			</PivotItem>
-		</Pivot>
-		
-	</Grid>
+    </Grid>
 </Page>

@@ -1,4 +1,5 @@
 ﻿using PetrolWindowsPhone.Common;
+using PetrolWindowsPhone.Model;
 using PetrolWindowsPhone.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -110,14 +111,15 @@ namespace PetrolWindowsPhone
 
 		#endregion
 
-		private void ItemView_ItemClick(object sender, ItemClickEventArgs e)
+		private void Station_ItemClick(object sender, ItemClickEventArgs e)
 		{
-
+            Station selected = (Station)e.ClickedItem;
+            this.Frame.Navigate(typeof(StationDetails), selected);
 		}
 
 		private void FranchisePivot_Loaded(object sender, RoutedEventArgs e)
 		{
-
+            franchiseList.DataContext = new StatsViewModel();
 		}
 
 		private void PersonalPivot_Loaded(object sender, RoutedEventArgs e)

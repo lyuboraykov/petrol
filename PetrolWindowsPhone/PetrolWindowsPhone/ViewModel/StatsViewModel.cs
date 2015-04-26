@@ -12,19 +12,36 @@ namespace PetrolWindowsPhone.ViewModel
     {
         private RemoteDataManager manager;
         private List<Station> topTen;
+        private List<Station> franchiseRank;
         public StatsViewModel()
         {
             manager = new RemoteDataManager();
-           // this.TopTenStations = new List<Station>();
-           // TopTenStations.Add(new Station("dfafaf","fafs","fd",34,45));
+            this.franchiseRank = new List<Station>();
+            this.FranchiseRank.Add(new Station("Lukoil",null,null,34,45));
             this.getTopStations();
         }
 
         private async void getTopStations()
         {
-           List<Station> stations =  await manager.GetTopStations(2, false);
+           List<Station> stations =  await manager.GetTopStations(10, true);
+           foreach (Station station in stations)
+           {
+               station.Consumption = (station.Liters / station.Kilometers) * 100;
+           }
            this.TopTenStations = stations;
-           int a = 10;
+        }
+
+        public List<Station> FranchiseRank
+        {
+            get
+            {
+                return this.franchiseRank;
+            }
+            set
+            {
+                this.franchiseRank = value;
+                RaisePropertyChanged("FranchiseRank");
+            }
         }
 
         public List<Station> TopTenStations
