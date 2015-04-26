@@ -69,6 +69,7 @@ namespace PetrolWindowsPhone
 		private static DateTime currentDateTime;
 		private static int totalCalls;
 		private static double totalDistance;
+		private static double THRESHOLD_MOVEMENT = 20.0;
 
 		SpeedCoef[] speedCoefList = new SpeedCoef[]
 		{
@@ -102,7 +103,7 @@ namespace PetrolWindowsPhone
 		{
 			geolocator = new Geolocator();
 			geolocator.DesiredAccuracyInMeters = 50;
-			geolocator.MovementThreshold = 50;
+			geolocator.MovementThreshold = THRESHOLD_MOVEMENT;
 			geolocator.PositionChanged += geolocator_PositionChanged;
 		}
 
@@ -128,7 +129,7 @@ namespace PetrolWindowsPhone
 		{
 		}
 
-		private void RestartSession(object sender, RoutedEventArgs e)
+		private void ResetButton_Click(object sender, RoutedEventArgs e)
 		{
 			sessionData.Visibility = Visibility.Collapsed;
 			startButton.Visibility = Visibility.Visible;
@@ -197,7 +198,7 @@ namespace PetrolWindowsPhone
 				TimeSpan timeInterval = lastDateTime - currentDateTime;
 
 				//v = s/t;
-				double metersPerSecond = 50.0 / timeInterval.Ticks;
+				double metersPerSecond = THRESHOLD_MOVEMENT / timeInterval.Ticks;
 
 				double kmPerHour = metersPerSecond * 3.6;
 
@@ -212,7 +213,7 @@ namespace PetrolWindowsPhone
 					SpeedCoef speedCoef = speedCoefList[i];
 					if (kmPerHour <= speedCoef.KmPerHour)
 					{
-						distanceWithCoef = 50.0 * speedCoef.Coefficient;
+						distanceWithCoef = THRESHOLD_MOVEMENT * speedCoef.Coefficient;
 						break;
 					}
 				}
@@ -222,6 +223,11 @@ namespace PetrolWindowsPhone
 				DistanceTextBlock.Text = totalDistance.ToString("0.00");
 				ElapsedTimeTextBlock.Text = string.Format("{0}:{1}:{2}", timeInterval.Hours, timeInterval.Minutes, timeInterval.Seconds);
 			});
+		}
+
+		private void PouseButton_Click(object sender, RoutedEventArgs e)
+		{
+
 		}
 	}
 }

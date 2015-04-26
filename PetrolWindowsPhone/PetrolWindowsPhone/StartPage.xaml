@@ -34,8 +34,8 @@
 					<ColumnDefinition Width="Auto"></ColumnDefinition>
 				</Grid.ColumnDefinitions>
 				<Image Grid.Row="0" Source="Assets/logo-5.png" Width="130" HorizontalAlignment="Center"></Image>
-				<Button Name="PouseButton" Grid.Row="0" IsEnabled="False" Grid.Column="2" Grid.RowSpan="2" Content ="Pouse" HorizontalAlignment="Center" Width="150" Height="70" VerticalAlignment="Top" BorderBrush="Red"></Button>
-				<Button Name="ResetButton" IsEnabled="False" Grid.Row="0" Grid.Column="2" Content="Reset" HorizontalAlignment="Center" Width="150" Height="70" VerticalAlignment="Bottom" BorderBrush="Orange" Click="RestartSession"></Button>
+				<Button Name="PouseButton" Click="PouseButton_Click" Grid.Row="0" IsEnabled="False" Grid.Column="2" Grid.RowSpan="2" Content ="Pouse" HorizontalAlignment="Center" Width="150" Height="70" VerticalAlignment="Top" BorderBrush="Red"></Button>
+				<Button Name="ResetButton" IsEnabled="False" Grid.Row="0" Grid.Column="2" Content="Reset" HorizontalAlignment="Center" Width="150" Height="70" VerticalAlignment="Bottom" BorderBrush="Orange" Click="ResetButton_Click"></Button>
 			</Grid>
 			<Line Style="{ThemeResource ApplicationHeaderLineStyle}"></Line>
 		</StackPanel>
