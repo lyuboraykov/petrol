@@ -36,7 +36,7 @@ $.getJSON("http://petrol-web.herokuapp.com/stations?sorted=true", function(data)
             "<span class='station-name'>" + listItem.name + "</span>" +
             "<span class='address'>" + listItem.city + ", " + listItem.address + "</span>" +
             "</td>" +
-            "<td>" + Math.round(listItem.liters) / 10 + "l." + "</td>" +
+            "<td>" + Math.round(listItem.liters * 10) / 10 + "l." + "</td>" +
             "<td>" + listItem.kilometers + "km." + "</td>" +
             "<td>" +
             "<span class='avg'>" + Math.round((listItem.liters / listItem.kilometers) * 1000) / 10 + "</span>" +
